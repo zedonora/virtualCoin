@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Imagetoolbar" content="No" />
+	<title></title>
+	<style>
+	label{color:blue}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+<script type="text/javascript">
+$( document ).ready(function() {
+	setInterval(reloadFunc,10000);
+});
+function reloadFunc(){
+	$('#refresh').load(location.href);
+}
+</script>
+<div id="refresh"></div>
+</body>
+</html>
