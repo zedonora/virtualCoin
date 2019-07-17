@@ -4,18 +4,28 @@
   "description": "",
   "main": "test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node test.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect": "^3.7.0",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "expressjs": "^1.0.1",
+    "fcm-node": "^1.5.1",
     "https": "^1.0.0",
     "method-override": "^3.0.0",
     "request": "^2.88.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "web-push": "^3.3.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/node": "^7.5.0",
+    "@babel/preset-env": "^7.5.4"
   }
 }
