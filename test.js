@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // qs모듈로 쿼리스트�
 // });
 
 let compareJson = [];
+let tradePercent = 0,
+comparePercent = 0;
 
 app.get("/", (req, res) => {
   fs.readFile(__dirname + "/index.html", { json: true }, function(err, data) {
@@ -27,9 +29,18 @@ app.get("/", (req, res) => {
     Promise.all([promise1, promise2, promise3, promise4]).then(function(
       values
     ) {
+	  var firstMarket = {};
+	  var secondMarket = {};
       console.log("values>>>>>>>>>>>>>" + values);
+	  for(var i = 0; i<compareJson.length - 1 ; i++) {
+		  firstMarket = compareJson[i];
+		  secondMarket = compareJson[i+1];
+		  if (Math.abs(firstMarket.price - secondMarket.price) > comparePercent && priceCheck(firstMarket.price, secondMarket.price) > 0) {
+			   sellQuantity(firstMarket.price, aUrl, tradePercent); 
+			   buyQuantity(secondMarket.price, bUrl, tradePercent);
+			}
+	  }
     });
-    console.log(compareJson);
   });
 });
 
@@ -104,4 +115,19 @@ const promise3 = new Promise((resolve, reject) => {
     });
 });
 
-const promise4 = Promise.resolve("aasdas");
+function priceCheck(priceA, priceB) {
+   var compare = (priceA - priceB) >= 0 ? priceA : priceB;
+   return Math.abs(priceA - priceB) / compare;
+}
+
+
+function sellQuantity(price, targetUrl, percent){
+   
+}
+function buyQuantity(price, targetUrl, percent){
+   
+}
+
+function calPercent(quantitySell, quantityBuy, quantityHave) {
+   return Math.abs((quantitySell - quantityBuy)/ quantityHave)
+}
