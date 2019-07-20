@@ -6,14 +6,13 @@ const fs = require("fs");
 const https = require("https");
 const querystring = require("querystring");
 const app = express();
-import firebase from "./modules/fcm_setting";
 
 dotenv.config();
 app.listen(process.env.PORT);
 app.use(methodOverride()); // PUT, DELETE를 지원 안 하는 클라이언트를 위해
 app.use(bodyParser.json()); // body의 데이터를 json형식으로 받음
 app.use(bodyParser.urlencoded({ extended: true })); // qs모듈로 쿼리스트링 파싱
-app.use("/static", express.static("static"));
+app.use(express.static("static"));
 
 let compareJson = [];
 let tradePercent = 0,
