@@ -3,22 +3,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Imagetoolbar" content="No" />
-	<title>trade bot</title>
+	<title>Order Book</title>
 	<style>
-	label{color:blue}
 	div {
         margin-bottom: 15px;
     }
 	</style>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
 </head>
 <body>
-	<div id="token"></div>
-    <div id="msg"></div>
-    <div id="notis"></div>
-    <div id="err"></div>
 	<div id="refresh"></div>
 
 <script type="text/javascript">
@@ -28,42 +21,7 @@ $( document ).ready(function() {
 function reloadFunc(){
 	$('#refresh').load(location.href);
 }
-
-MsgElem = document.getElementById("msg")
-TokenElem = document.getElementById("token")
-NotisElem = document.getElementById("notis")
-ErrElem = document.getElementById("err")
-
-//TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#config-web-app
-
-const messaging = firebase.messaging(); 
-messaging.usePublicVapidKey('BLfNvOstjGmPWHABEx8_QyEECGbXrBVyQLMkno5EU4PD2mrOsCHwMEMbUkFlRDOe2bf5NilQPZvPCg4oI845P2Y');
-
-messaging.requestPermission()
-	.then(function () {
-		MsgElem.innerHTML = "Notification permission granted." 
-		console.log("Notification permission granted.");
-
-		// get the token in the form of promise
-		return messaging.getToken()
-	})
-	.then(function(token) {
-		TokenElem.innerHTML = "token is : " + token
-	})
-	.catch(function (err) {
-		ErrElem.innerHTML =  ErrElem.innerHTML + "; " + err
-		console.log("Unable to get permission to notify.", err);
-	});
-
-messaging.onMessage(function(payload) {
-	console.log("Message received. ", payload);
-	NotisElem.innerHTML = NotisElem.innerHTML + JSON.stringify(payload) 
-	var obj = JSON.parse(payload.data.notification);
-	var notification = new Notification(obj.title, {
-		icon: obj.icon,
-		body: obj.body
-	})
-});
 </script>
+
 </body>
 </html>
