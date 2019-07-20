@@ -6,6 +6,7 @@ const fs = require("fs");
 const https = require("https");
 const querystring = require("querystring");
 const app = express();
+import firebase from "./modules/fcm_setting";
 
 dotenv.config();
 app.listen(process.env.PORT);
@@ -88,6 +89,10 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/push", function(req, res) {
+  res.sendFile(__dirname + "/static/push.html");
+});
+
 const promise1 = new Promise((resolve, reject) => {
   https
     .get("https://api.bithumb.com/public/ticker/ETH", res => {
@@ -164,6 +169,7 @@ const promise3 = new Promise((resolve, reject) => {
 
 const callPost = (sendData, hostname, path, type) => {
   new Promise((resolve, reject) => {
+    var postData = querystring.stringify(sendData);
     var options = {
       hostname: hostname,
       port: 443,
@@ -174,7 +180,6 @@ const callPost = (sendData, hostname, path, type) => {
         "Content-Length": postData.length
       }
     };
-    var postData = querystring.stringify(sendData);
     var req = https.request(options, res => {
       console.log("statusCode:", res.statusCode);
       console.log("headers:", res.headers);
