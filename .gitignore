@@ -90,3 +90,5 @@ typings/
 node_modules
 
 .env
+
+middlewares/log
