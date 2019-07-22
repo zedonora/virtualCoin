@@ -89,6 +89,6 @@ typings/
 
 node_modules
 
-.env
+#.env
 
 middlewares/log
