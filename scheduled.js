@@ -1,7 +1,8 @@
+import orderBook from "../market/orderBook.js";
 const order = () => {
 	let orderBookJson = [];
 	// 1번
-	Promise.all([promise1, promise2]).then(function(values) {
+	Promise.all([orderBook.promise1, orderBook.promise2]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -59,7 +60,7 @@ const order = () => {
 	});
 
 	// 2번
-	Promise.all([promise1, promise3]).then(function(values) {
+	Promise.all([orderBook.promise1, orderBook.promise3]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -117,7 +118,7 @@ const order = () => {
 	});
 
 	// 3번
-	Promise.all([promise1, promise4]).then(function(values) {
+	Promise.all([orderBook.promise1, orderBook.promise4]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -175,7 +176,7 @@ const order = () => {
 	});
 
 	// 4번
-	Promise.all([promise1, promise5]).then(function(values) {
+	Promise.all([orderBook.promise1, orderBook.promise5]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -233,7 +234,7 @@ const order = () => {
 	});
 
 	// 5번
-	Promise.all([promise2, promise3]).then(function(values) {
+	Promise.all([orderBook.promise2, orderBook.promise3]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -291,7 +292,7 @@ const order = () => {
 	});
 
 	// 6번
-	Promise.all([promise2, promise4]).then(function(values) {
+	Promise.all([orderBook.promise2, orderBook.promise4]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -349,7 +350,7 @@ const order = () => {
 	});
 
 	// 7번
-	Promise.all([promise2, promise5]).then(function(values) {
+	Promise.all([orderBook.promise2, orderBook.promise5]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -407,7 +408,7 @@ const order = () => {
 	});
 
 	// 8번
-	Promise.all([promise3, promise4]).then(function(values) {
+	Promise.all([orderBook.promise3, orderBook.promise4]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -465,7 +466,7 @@ const order = () => {
 	});
 
 	// 9번
-	Promise.all([promise3, promise5]).then(function(values) {
+	Promise.all([orderBook.promise3, orderBook.promise5]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
@@ -523,7 +524,7 @@ const order = () => {
 	});
 
 	// 10번
-	Promise.all([promise4, promise5]).then(function(values) {
+	Promise.all([orderBook.promise4, orderBook.promise5]).then(function(values) {
 	  var firstMarket = orderBookJson.filter(function(market) {
 		return market.id == "bithumb";
 	  });
