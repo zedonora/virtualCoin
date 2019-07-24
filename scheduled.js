@@ -584,7 +584,7 @@ const order = () => {
 	const promise1 = new Promise((resolve, reject) => {
 	  callGetOrderBook("bithumb", "https://api.bithumb.com/public/orderbook/ETH");
 	  resolve("a");
-	  //resolve(orderBookJson);
+	  resolve(orderBookJson);
 	});
 	// upbit
 	const promise2 = new Promise((resolve, reject) => {
@@ -619,13 +619,8 @@ const order = () => {
 	// cpdax
 	const promise6 = new Promise((resolve, reject) => {
 	  callGetOrderBook("cpdax", "https://api.cpdax.com/v1/orderbook/ETH-KRW");
-	  resolve("b");
-	  //resolve(orderBookJson);
+	  resolve(orderBookJson);
 	});
-
-	const a = function() {
-	  return "a";
-	};
 
 	const callGetOrderBook = (name, url) => {
 	  console.log("callGetOrderBook>>>>>>" + name);
