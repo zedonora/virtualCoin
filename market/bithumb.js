@@ -25,15 +25,12 @@ request =require('request');
 //logger = require('../middlewares/winston');
 dotenv.config();
 
-function XCoinAPI(units, path){
+function XCoinAPI(units){
 	this.apiUrl = 'https://api.bithumb.com';
 	this.units = units;
-	this.path = path;
-	this.startAPI();
 }
 
-var xcoinAPI = new XCoinAPI(20000,"sell");
-XCoinAPI.prototype.startAPI = function() {
+XCoinAPI.prototype.startAPI = function(path) {
 	var rgParams = {
 		apiKey: process.env.BITHUMB_API_KEY,
     	secretKey: process.env.BITHUMB_SECRET_KEY,
@@ -43,7 +40,7 @@ XCoinAPI.prototype.startAPI = function() {
     	currency: "ETH"
 	};
 
-	this.xcoinApiCall('/trade/'+this.path, rgParams);
+	this.xcoinApiCall('/trade/'+path, rgParams);
 };
 
 XCoinAPI.prototype.xcoinApiCall = function(endPoint, params) {
