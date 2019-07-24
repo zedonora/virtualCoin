@@ -1,10 +1,12 @@
 //bitumb - cpdax
-import { promise1, promise6 } from "../scheduled";
+import orderBook from "./market/orderBook";
+
 const trade1 = () => {
-  console.log(promise1);
+  console.log(orderBook.promise1());
   // 10번
-  Promise.all([promise1, promise6]).then(function(values) {
+  Promise.all([orderBook.promise1, orderBook.promise6]).then(function(values) {
     console.log(values);
+    console.log(orderBook.returnJson);
     //     var firstMarket = order.orderBookJson.filter(function(market) {
     //       return market.id == "bithumb";
     //     });

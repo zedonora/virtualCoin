@@ -6,8 +6,6 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import fs from "fs";
-import https from "https";
-import querystring from "querystring";
 import logger from "./middlewares/winston";
 
 const app = express();
