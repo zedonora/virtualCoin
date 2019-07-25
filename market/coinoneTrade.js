@@ -1,33 +1,29 @@
-const callPost = function(sendData, hostname, path, type) {
-  new Promise((resolve, reject) => {
-    var postData = querystring.stringify(sendData);
-    var options = {
-      hostname: hostname,
-      port: 443,
-      path: path,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": postData.length
-      }
-    };
-    var req = https.request(options, res => {
-      console.log("statusCode:", res.statusCode);
-      console.log("headers:", res.headers);
+//https://api.coinone.co.kr/v1/order/limit_buy/
+//access_token
+//nonce
+//price
+//qty
+//currency("ETH")
+//https://api.coinone.co.kr/v1/order/limit_sell/
+//access_token
+//nonce
+//price
+//qty
+//currency("ETH")
+//내지갑
 
-      res.on("data", d => {
-        process.stdout.write(d);
-      });
-      res.on("end", () => {
-        resolve();
-      });
-    });
-
-    req.on("error", e => {
-      console.error(e);
-    });
-
-    req.write(postData);
-    req.end();
-  });
-};
+//result
+//errorCode
+//orderId
+// {
+// 	"access_token": "335fb55e-fa0a-4c2d-afd8-37c7b0c989b3",
+// 	"nonce": 1549354393,
+// 	"price": "1000000.0",
+// 	"qty": 0.12,
+// 	"currency": "BTC"
+// 	}
+// {
+// 	"result": "success",
+// 	"errorCode": "0",
+// 	"orderId": "8a82c561-40b4-4cb3-9bc0-9ac9ffc1d63b"
+// 	}
