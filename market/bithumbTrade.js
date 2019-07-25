@@ -16,14 +16,10 @@
 			CryptoJS : HmacSHA512
 */
 
-// import dotenv from "dotenv";
-// dotenv.config();
-// import request from 'request';
-// import logger from "../middlewares/winston";
-var dotenv = require('dotenv'),
-request =require('request');
-//logger = require('../middlewares/winston');
+import dotenv from "dotenv";
 dotenv.config();
+import request from 'request';
+import logger from "../middlewares/winston";
 
 function XCoinAPI(units){
 	this.apiUrl = 'https://api.bithumb.com';
@@ -34,29 +30,25 @@ XCoinAPI.prototype.startAPI = function(path) {
 	var rgParams = {
 		apiKey: process.env.BITHUMB_API_KEY,
     	secretKey: process.env.BITHUMB_SECRET_KEY,
-		// apiKey:"c6e8372b16d9e07c296032fa3a338a38",
-    	// secretKey: "c0ab62481aa163652bacfcd145983b80",
 		units: this.units,
     	currency: "ETH"
 	};
 
-	this.xcoinApiCall('/trade/'+path, rgParams);
+	this.xcoinApiCall('/trade/market_'+path, rgParams);
 };
 
 XCoinAPI.prototype.xcoinApiCall = function(endPoint, params) {
 	var rgParams = {
 		'endPoint' : endPoint
 	};
-
 	if(params) {
-		for(o in params){
+		for(var o in params){
 			rgParams[o] = params[o];
 		}
 	}
 
 	var api_host = this.apiUrl + endPoint;
-	var httpHeaders = this._getHttpHeaders(endPoint, rgParams, this.api_key, this.api_secret);
-
+	var httpHeaders = this._getHttpHeaders(endPoint, rgParams, params.apiKey, params.secretKey);
 	var rgResult = this.request(api_host, 'POST', rgParams, httpHeaders);
 }
 
@@ -73,21 +65,16 @@ XCoinAPI.prototype.request = function(strHost, strMethod, rgParams, httpHeaders)
 	},
 	function(error, response, rgResult) {
 		if(error) {
-			console.log(error);
+			logger.error(error);
 			return;
 		}
 
 		var rgResultDecode = JSON.parse(rgResult);
-		console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>1")
-		// if (rgResultDecode.status == '0000') {
-		// 	logger.info({"bithumb result":"success", "bithumb response":rgResultDecode});
-		// } else {
-		// 	logger.error({"bithumb result":"fail", "bithumb msg":rgResultDecode.message});
-		// }
-		console.log(rgResultDecode);
-		console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>2")
-		console.log(JSON.stringify(response));
-		console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>4")
+		if (rgResultDecode.status == '0000') {
+			logger.info({"bithumb result":"success", "bithumb response":rgResultDecode});
+		} else {
+			logger.error({"bithumb result":"fail", "bithumb msg":rgResultDecode.message});
+		}
 	});
 }
 
@@ -95,6 +82,7 @@ XCoinAPI.prototype.request = function(strHost, strMethod, rgParams, httpHeaders)
 XCoinAPI.prototype._getHttpHeaders = function(endPoint, rgParams, api_key, api_secret) {
 	var strData	= http_build_query(rgParams);
 	var nNonce = this.usecTime();
+	console.log("endPoint: "+endPoint+", strData: "+strData+", nNonce: "+nNonce +", api_secret: "+api_secret);
 	return {
 		'Api-Key' : api_key,
 		'Api-Sign' : (base64_encode(CryptoJS.HmacSHA512(endPoint + chr(0) + strData + chr(0) + nNonce, api_secret).toString())),
@@ -126,6 +114,7 @@ function microtime(get_as_float) {
 }
 
 function http_build_query(obj) { 
+	console.log(obj);
 	var output_string = [] 
 	Object.keys(obj).forEach(function (val) {
 		var key = val;  
