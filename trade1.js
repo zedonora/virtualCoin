@@ -1,6 +1,7 @@
 //bitumb - cpdax
 import orderBook from "./market/orderBook";
-import Bithumb from "./market/bithumbTrade";
+import BithumbTrade from "./market/bithumbTrade";
+import BithumbBalance from "./market/bithumbBalance";
 import Coinone from "./market/coinoneTrade";
 const trade1 = () => {
   // 10번
@@ -8,8 +9,10 @@ const trade1 = () => {
     .then(values => {
       console.log(values);
       Coinone(500, 1, "buy");
-      // const bithumb = new Bithumb("200000");
-      // bithumb.startAPI("sell");
+      // const bithumbTrade = new BithumbTrade("200000");
+      // bithumbTrade.startAPI("sell");
+      // const bithumbBalance = new BithumbBalance();
+      // bithumbBalance.startAPI();
     })
     .catch(error => {
       console.log(error.message);
