@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8000;
 const handleListening = () => {
   console.log(`✅  Listening on: http://localhost:${PORT}`);
   trade1();
-  //setInterval(trade1, 5000);
+  //setInterval(trade1, process.env.POLLING_TIME);
   //logger.info("second");
 };
 
