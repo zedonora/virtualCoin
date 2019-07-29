@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { Base64 } from "js-base64";
 import crypto from "crypto";
 import logger from "../middlewares/winston";
+import db from "../db";
 dotenv.config();
 
 const coinoneBalance = () => {
@@ -43,6 +44,18 @@ const coinoneBalance = () => {
           "coinone msg": jsonData.errorMsg
         });
       }
+      db.query(
+        "SELECT a.user_id, a.old_balance FROM t_profit a INNER JOIN user b ON a.user_id = b.id"
+      ).then(result => {
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>");
+        console.log(result[0]);
+        var data = result[0];
+        // 가지고 있는 값과 현재 값을 비교
+        if (data.cur_balance != jsonData.eth.balance) {
+        }
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>");
+      });
+
       console.log(jsonData);
     });
   });

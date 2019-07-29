@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
+import "./db";
 import app from "./app";
 import logger from "./middlewares/winston";
 import trade1 from "./trade1";
 import dnsTest from "./dnsTest";
-
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 const handleListening = () => {
