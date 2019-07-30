@@ -82,7 +82,6 @@ XCoinAPI.prototype.request = function(strHost, strMethod, rgParams, httpHeaders)
 XCoinAPI.prototype._getHttpHeaders = function(endPoint, rgParams, api_key, api_secret) {
 	var strData	= http_build_query(rgParams);
 	var nNonce = this.usecTime();
-	console.log("endPoint: "+endPoint+", strData: "+strData+", nNonce: "+nNonce +", api_secret: "+api_secret);
 	return {
 		'Api-Key' : api_key,
 		'Api-Sign' : (base64_encode(CryptoJS.HmacSHA512(endPoint + chr(0) + strData + chr(0) + nNonce, api_secret).toString())),
@@ -114,12 +113,11 @@ function microtime(get_as_float) {
 }
 
 function http_build_query(obj) { 
-	console.log(obj);
 	var output_string = [] 
 	Object.keys(obj).forEach(function (val) {
 		var key = val;  
 		key = encodeURIComponent(key.replace(/[!'()*]/g, escape));
-
+		
 		if (typeof obj[val] === 'object') {
 			var query = build_query(obj[val], null, key)
 			output_string.push(query)

@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { Base64 } from "js-base64";
 import crypto from "crypto";
 import logger from "../middlewares/winston";
-import db from "../db";
+
 dotenv.config();
 
 const coinoneBalance = () => {
@@ -36,7 +36,7 @@ const coinoneBalance = () => {
       if (jsonData.result == "success") {
         logger.info({
           "coinone result": "success",
-          "coinone response": jsonData
+          "coinone response": jsonData.eth
         });
       } else {
         logger.error({
@@ -44,7 +44,7 @@ const coinoneBalance = () => {
           "coinone msg": jsonData.errorMsg
         });
       }
-      console.log(jsonData);
+      console.log(jsonData.eth);
       return jsonData;
     });
   });
