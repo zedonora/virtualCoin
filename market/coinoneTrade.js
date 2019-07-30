@@ -47,6 +47,7 @@ const coinoneTrade = (price, qty, type) => {
         });
       }
       console.log(jsonData);
+      return jsonData;
     });
   });
 
