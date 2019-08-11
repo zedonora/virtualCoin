@@ -72,6 +72,7 @@ XCoinAPI.prototype.request = function(strHost, strMethod, rgParams, httpHeaders)
 		var rgResultDecode = JSON.parse(rgResult);
 		if (rgResultDecode.status == '0000') {
 			logger.info({"bithumb result":"success", "bithumb response":rgResultDecode});
+			return rgResultDecode;
 		} else {
 			logger.error({"bithumb result":"fail", "bithumb msg":rgResultDecode.message});
 		}
