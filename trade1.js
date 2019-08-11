@@ -4,11 +4,13 @@ import BithumbTrade from "./market/bithumbTrade";
 import BithumbBalance from "./market/bithumbBalance";
 import coinoneTrade from "./market/coinoneTrade";
 import coinoneBalance from "./market/coinoneBalance";
+import logger from "./middlewares/winston";
 
 const trade1 = () => {
   // 10번
   Promise.all([orderBook.promise1(), orderBook.promise3()])
     .then(values => {
+      logger.info({ "bithumb, coinone orderbook": values });
       var firstMarket = values[0];
       var secondMarket = values[1];
       // 0: 수량, 1: 금액
