@@ -13,8 +13,11 @@ const trade1 = () => {
       const bithumbBalance = new BithumbBalance();
       coinoneBalance();
       bithumbBalance.startAPI();
-      
-      logger.info({ "bithumb, coinone orderbook": values, "time": getDateFormat(new Date()) });
+
+      logger.info({
+        "bithumb, coinone orderbook": values,
+        time: getDateFormat(new Date())
+      });
       var firstMarket = values[0];
       var secondMarket = values[1];
       // 0: 수량, 1: 금액
@@ -61,7 +64,7 @@ var getDateFormat = function(date) {
   var ss = date.getSeconds();
 
   return [
-    this.getFullYear(),
+    date.getFullYear(),
     "-",
     (month > 9 ? "" : "0") + month,
     "-",
