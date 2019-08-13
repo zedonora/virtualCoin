@@ -1,4 +1,4 @@
-//bitumb - cpdax
+//bitumb - coinone
 import orderBook from "./market/orderBook";
 import BithumbTrade from "./market/bithumbTrade";
 import BithumbBalance from "./market/bithumbBalance";
@@ -10,7 +10,11 @@ const trade1 = () => {
   // 10번
   Promise.all([orderBook.promise1(), orderBook.promise3()])
     .then(values => {
-      logger.info({ "bithumb, coinone orderbook": values });
+      const bithumbBalance = new BithumbBalance();
+      coinoneBalance();
+      bithumbBalance.startAPI();
+      
+      logger.info({ "bithumb, coinone orderbook": values, "time": getDateFormat(new Date()) });
       var firstMarket = values[0];
       var secondMarket = values[1];
       // 0: 수량, 1: 금액
@@ -42,7 +46,6 @@ const trade1 = () => {
       }
 
       coinoneBalance();
-      const bithumbBalance = new BithumbBalance();
       bithumbBalance.startAPI();
     })
     .catch(error => {
