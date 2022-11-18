@@ -35,7 +35,7 @@
     "socket.io": "^2.2.0",
     "uuidv4": "^4.0.0",
     "web-push": "^3.3.5",
-    "webpack-cli": "^3.3.6",
+    "webpack-cli": "^3.3.12",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.10.0"
   },
