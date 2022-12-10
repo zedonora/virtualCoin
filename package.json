@@ -16,7 +16,7 @@
     "cookie-parser": "^1.4.4",
     "dns": "^0.2.2",
     "dotenv": "^8.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "expressjs": "^1.0.1",
     "fcm-node": "^1.5.1",
     "firebase": "^6.3.1",
